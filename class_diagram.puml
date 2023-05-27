@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface IPassenger {
++ {abstract} Boarding() : void
++ {abstract} UnBoarding() : void
+}
+
+interface ICargo{
++ {abstract} Loading() : void
++ {abstract} UnLoading() : void
+}
+
+class Transport {
++ model : string
++ manufactured : string
++ {abstract} Moving() : void
+}
+
+Transport <|-- MotorTransport
+class MotorTransport{
++ Moving() : void
+}
+
+MotorTransport <|-- Bus
+IPassenger <|.. Bus
+class Bus {
++ Boarding() : void
++ UnBoarding() : void
+}
+
+MotorTransport <|-- Truck
+ICargo <|.. Truck
+class Truck {
++ Loading() : void
++ UnLoading() : void
+}
+
+Transport <|-- AirTransport
+class AirTransport{
++ Moving() : void
+}
+
+AirTransport <|-- AirBus
+IPassenger <|.. AirBus
+class AirBus {
++ Boarding() : void
++ UnBoarding() : void
+}
+
+AirTransport <|-- AirTruck
+ICargo <|.. AirTruck
+class AirTruck {
++ Loading() : void
++ UnLoading() : void
+}
+
+@enduml
