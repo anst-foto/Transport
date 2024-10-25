@@ -1,0 +1,66 @@
+﻿@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Transport
+{
+    + Name : string
+    + {abstract} Move() : void
+}
+
+Transport <|-- Auto
+abstract class Auto
+{
+    + Move() : void
+}
+
+Transport <|-- Avia
+abstract class Avia
+{
+    + Move() : void
+}
+
+interface ICargo
+{
+    + {abstract} Load() : void
+    + {abstract} UnLoad() : void
+}
+
+interface IPassenger
+{
+    + {abstract} Boarding() : void
+    + {abstract} UnBoarding() : void
+}
+
+Avia <|-- CargoPlane
+ICargo <|.. CargoPlane
+class CargoPlane
+{
+    + Load() : void
+    + UnLoad() : void
+}
+
+Avia <|-- PassengerPlane
+IPassenger <|.. PassengerPlane
+class PassengerPlane
+{
+    + Boarding() : void
+    + UnBoarding() : void
+}
+
+Auto <|-- Car
+IPassenger <|.. Car
+class Car
+{
+    + Boarding() : void
+    + UnBoarding() : void
+}
+
+Auto <|-- Truck
+ICargo <|.. Truck
+class Truck
+{
+    + Load() : void
+    + UnLoad() : void
+}
+
+@enduml
